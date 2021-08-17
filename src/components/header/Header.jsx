@@ -95,7 +95,8 @@ const Navbar = ({ children, className, datatestid }) => {
     }
     window.addEventListener('click', handleOutsideClick);
     return () => window.removeEventListener('click', handleOutsideClick);
-  }, [open, navbarRef]);
+  }, [open, navbarRef])
+  
   return (
     <Context.Provider value={{ open, toggle }}>
       <nav ref={navbarRef} className={`${className} ${style.navbar}`} data-testid={datatestid}>

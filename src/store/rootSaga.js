@@ -4,6 +4,7 @@ import initial from './app/initialSagas'
 import pageLoader from './app/pageLoaderSaga'
 import posts from './blog/blog.saga'
 import post from './post/post.saga'
+import createPost from './createPost/createPost.saga'
 
 export default function* rootSaga() {
   yield all([
@@ -11,6 +12,7 @@ export default function* rootSaga() {
     authSaga(),
     posts(),
     post(),
+    createPost,
     // pageLoader()
   ])
 }

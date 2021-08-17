@@ -5,7 +5,7 @@ export const CardPage = ({ posts }) => {
   return (
     <div className="flex flex-wrap">
 
-      {posts && posts.map(({ title, text, author, date, id, imgUrl, alt, shortText }) => (
+      {posts && posts.map(({ title, content, auth, createdAt, id, imgUrl, alt, excerpt }) => (
         <div key={id} className="w-full md:w-4/12 mb-6 md:mb-0 md:p-3">
           <Card>
             <img
@@ -18,7 +18,7 @@ export const CardPage = ({ posts }) => {
                 {title}
               </CardTitle>
               <CardText>
-                {shortText}
+                {excerpt}
               </CardText>
               <Link to={`/blog/${title}`}>
                 <span className="text-indigo-500 inline-flex items-center mt-4 cursor-pointer">

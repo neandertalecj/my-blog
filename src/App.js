@@ -50,7 +50,7 @@ function App() {
               <SuspendedAccount />
             </Route>
 
-            <Route path='/sanbox' render={() => <SandBox history={history} />} />
+            <Route path='/sandbox' render={() => <SandBox history={history} />} />
 
             <Route path='*'
               render={() => <SuspendedNotFound />}

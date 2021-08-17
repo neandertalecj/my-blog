@@ -13,9 +13,6 @@ const Post = () => {
   const error = useSelector(state => state.post.error)
   const dispatch = useDispatch()
 
-  // if (post) { const { title, text, author, date, imgUrl, alt, shortText } = post}
-  // console.log('POST', post)
-
   useEffect(() => {
     dispatch(getPost(id))
   }, [])
@@ -25,12 +22,12 @@ const Post = () => {
   return (
     <Container>
       {error && <div className="text-red-300 mb-2 relative"><ErrorIcon />{error}</div>}
-      <img src={post.imgUrl} alt={post.alt} />
+      <img src={post.imgUrl} alt='' />{/* alt={post.alt} */}
       <h1>{post.title}</h1>
-      <p>{post.text}</p>
+      <div dangerouslySetInnerHTML={{__html: post && post.content}}></div>
       <hr />
-      <span>{post.author}</span>
-      <span> {post.date}</span>
+       <span>{post.auth}</span>
+      <span>{new Date(post.createdAt.seconds).toLocaleDateString()}</span>
     </Container>
   )
 }

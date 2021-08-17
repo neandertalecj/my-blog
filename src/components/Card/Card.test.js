@@ -13,7 +13,7 @@ const posts = [
     id: '1dfg3',
     imgUrl: 'http://url.com',
     alt: 'Image',
-    shortText: 'Ipson Lorem',
+    excerpt: 'Ipson Lorem',
   },
 ]
 
