@@ -2,12 +2,13 @@ import { forwardRef } from 'react'
 
 export const Button = forwardRef(({
   color='primary',
-  children="Click",
+  children='Click',
+  className='',
   ...props
 }, ref) => (
   <button
     ref={ref}
-    className={`${style.default} ${style.color[color]}`}
+    className={`${style.default} ${style.color[color]} ${className}`}
     {...props}
   >
     {children}

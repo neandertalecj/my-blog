@@ -12,7 +12,7 @@ export default function* rootSaga() {
     authSaga(),
     posts(),
     post(),
-    createPost,
+    createPost(),
     // pageLoader()
   ])
 }

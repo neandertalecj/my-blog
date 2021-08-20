@@ -26,6 +26,7 @@ export const registerUser = ({
   return firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
+    // Complete this operation by adding aditioal fields
     //!!!!!! https://docs.divjoy.com/adding-extra-fields-to-your-authentication-form
     // .then(handleAuth)
     // .then(() => {
@@ -138,7 +139,9 @@ export const uploadImageToStore = (file, place) => { //async
 * @param {string} place A collection in DB for a current images
 * @param {string} title A title of A Post
 * @param {string} content The post's content whit HTML markup
-* @return {Promise} A promise object represents success or fail for a publish post operation
+* @param {String} auth An auther name
+* @param {{ seconds :  number ,  nanoseconds :  number }} createdAt A data object in The Firebase Cloud
+* @return {Promise} A promise return post ID or error for a publish post operation
 */
 
 export const publishPost = (
@@ -159,6 +162,54 @@ export const publishPost = (
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       auth: getUserInfo().displayName,
     })
+
+    batch.commit()
+    .then(() => resolve(postRef.id))
+    .catch(err =>  reject(err))
+  })
+}
+
+/**
+* Update post
+*
+* @author neandertalecj
+* @param {string} postId The ID post that will be updated
+* @param {string} place A collection in DB for a current images
+* @param {string} title A title of A Post
+* @param {string} content The post's content whit HTML markup
+* @param {{ seconds :  number ,  nanoseconds :  number }} lastUpdate A data object in The Firebase Cloud
+* @return {Promise} A promise object represents success or fail for a update post operation
+*/
+
+export const updatePost = (
+  postID,
+  place,
+  title,
+  content,
+  excerpt,
+  imgUrl) => {
+  return new Promise((resolve, reject) => {
+    var batch = db.batch()
+
+    const postRef = db.collection(place).doc(postID)
+
+    // This if block checks should we update the image or not
+    if (imgUrl) {
+      batch.update(postRef, {
+        title,
+        content,
+        excerpt,
+        imgUrl,
+        lastUpdate: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+    } else {
+      batch.update(postRef, {
+        title,
+        content,
+        excerpt,
+        lastUpdate: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+    }
 
     batch.commit()
     .then(() => resolve(postRef.id))
