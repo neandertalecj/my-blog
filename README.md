@@ -1,10 +1,13 @@
 `This project in progress and mostly I was focusing on authorization and registration, on the account page to create and update the blog post. Also we can watch all existing post on The blog page. So at present let me suggest following next files to revise my coding skills:`
 
 > utils/api.js
+
 > pages/TextEditor/TextEditor.jsx
+
 > store/createPost/createPost.saga.js
 
 > components/Button/Button.test.js
+
 > components/Card/Card.test.js
 
 > pages/auth/Auth.jsx
